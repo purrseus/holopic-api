@@ -1,5 +1,4 @@
 const express = require('express');
-const router = express.Router();
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -12,9 +11,11 @@ const connectToDataBase = require('./configs/db.config');
 const { GLOBAL_PREFIX, ROOT_DIR, IS_PRODUCTION } = require('./constants');
 
 const app = express();
-initializeFirebaseAdminApp();
-
+const router = express.Router();
 const port = process.env.PORT || 3000;
+
+initializeFirebaseAdminApp();
+connectToDataBase();
 
 app.use(cors());
 app.use(helmet());
@@ -29,13 +30,7 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded;
 
 app.use(GLOBAL_PREFIX, router);
-
-// router.use(/* ... */);
-router.get('/', (_, res) => {
-  res.send('test');
-});
-
-connectToDataBase();
+router.use('/auth', require('./routes/auth.route'));
 
 app.listen(port, () => {
   console.log(`[Holopic API] Server is running on port ${port}`);

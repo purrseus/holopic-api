@@ -8,7 +8,7 @@
     "dev": "nodemon --inspect ./src/server.js",
     "lint": "eslint . --ext .js --fix",
     "prettier": "prettier --config ./.prettierrc.js --ignore-path ./.gitignore --write . -c",
-    "commit": "git-cz"
+    "commit": "cz"
   },
   "author": "Do Ngoc Thien",
   "license": "ISC",
@@ -25,6 +25,10 @@
     "rotating-file-stream": "^2.1.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-config-standard": "^16.0.2",
@@ -32,7 +36,13 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.3.1",
+    "husky": "^5.0.9",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

@@ -4,7 +4,7 @@ const { STATUS_CODE } = require('../constants');
 module.exports = async (req, res, next) => {
   if (!req.body.idToken) {
     res
-      .status(STATUS_CODE.UNAUTHORIZED)
+      .status(STATUS_CODE.BAD_REQUEST)
       .json({ message: 'idToken is required!' });
     return;
   }
@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
     next();
   } catch (error) {
     res
-      .status(STATUS_CODE.FORBIDDEN)
+      .status(STATUS_CODE.UNAUTHORIZED)
       .json({ message: error.errorInfo.message.replace(/\. .+$/g, '') });
   }
 };

@@ -37,7 +37,7 @@ module.exports.loginWithPhoneNumber = async (_, res) => {
 
   try {
     const userExist = await User.findOne({
-      phoneNumber: phone_number,
+      uid: user_id,
     });
 
     if (!userExist) {
@@ -56,11 +56,31 @@ module.exports.loginWithPhoneNumber = async (_, res) => {
       return;
     }
 
+    if (userExist.status === 'ACTIVE') {
+      res.status(STATUS_CODE.FORBIDDEN).json({
+        message: 'you have logged in with another device',
+      });
+      return;
+    }
+
+    // if userExist.status = DELETED.....
+
     userExist.status = 'ACTIVE';
     userExist.lastLogin = Date.now();
     await userExist.save();
 
     res.status(STATUS_CODE.OK).json(token);
+  } catch (error) {
+    res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);
+  }
+};
+
+module.exports.logout = async (_, res) => {
+  const { uid } = res.locals.user;
+
+  try {
+    await User.findOneAndUpdate({ uid: uid }, { status: 'INACTIVE' });
+    res.sendStatus(STATUS_CODE.OK);
   } catch (error) {
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);
   }

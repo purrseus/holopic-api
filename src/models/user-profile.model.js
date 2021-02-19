@@ -1,9 +1,16 @@
 const { Schema } = require('mongoose');
 
 module.exports = new Schema({
-  name: {
+  firstName: {
     type: String,
-    required: true,
+    required: false,
+    default: '',
+    minLength: 0,
+    maxLength: 32,
+  },
+  lastName: {
+    type: String,
+    required: false,
     default: '',
     minLength: 0,
     maxLength: 32,
@@ -11,7 +18,7 @@ module.exports = new Schema({
   username: {
     type: String,
     required: true,
-    match: /^@user_\d+/g,
+    match: /^@user_.+/g,
     minLength: 1,
     maxLength: 16,
   },
@@ -24,6 +31,18 @@ module.exports = new Schema({
     type: String,
     require: true,
     enum: ['N/A', 'MALE', 'FEMALE'],
+    default: 'N/A',
+  },
+  aboutYou: {
+    type: String,
+    required: false,
+    default: '',
+    minLength: 0,
+    maxLength: 255,
+  },
+  location: {
+    type: String,
+    require: true,
     default: 'N/A',
   },
   liked: {

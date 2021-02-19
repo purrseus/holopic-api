@@ -47,7 +47,6 @@ module.exports.loginWithPhoneNumber = async (_, res) => {
         lastLogin: Date.now(),
         uid: user_id,
         userProfile: {
-          name: '',
           username: `@user_${user_id.slice(-6)}`,
         },
       });
@@ -71,6 +70,7 @@ module.exports.loginWithPhoneNumber = async (_, res) => {
 
     res.status(STATUS_CODE.OK).json(token);
   } catch (error) {
+    console.log(error);
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);
   }
 };

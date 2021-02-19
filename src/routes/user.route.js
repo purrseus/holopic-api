@@ -8,7 +8,7 @@ router.get('/my-account', verifyToken, getMyAccount);
 
 // search user
 
-router.patch('/edit-account', verifyToken, editProfile);
+router.patch('/edit-profile', verifyToken, editProfile);
 
 // delete user
 

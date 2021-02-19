@@ -13,11 +13,20 @@ module.exports.getMyAccount = async (_, res) => {
 
 module.exports.editProfile = async (req, res) => {
   const { uid } = res.locals.user;
-  const { firstName, lastName, gender, avatar, aboutYou, location } = req.body;
+  const {
+    firstName,
+    lastName,
+    username,
+    gender,
+    avatar,
+    aboutYou,
+    location,
+  } = req.body;
 
   const editUserProfile = {
     'userProfile.firstName': firstName,
     'userProfile.lastName': lastName,
+    'userProfile.username': username,
     'userProfile.gender': gender,
     'userProfile.avatar': avatar,
     'userProfile.aboutYou': aboutYou,
@@ -25,17 +34,23 @@ module.exports.editProfile = async (req, res) => {
     updateAt: Date.now(),
   };
 
-  !firstName && delete editUserProfile['userProfile.firstName'];
-  !lastName && delete editUserProfile['userProfile.lastName'];
-  !gender && delete editUserProfile['userProfile.gender'];
-  !avatar && delete editUserProfile['userProfile.avatar'];
-  !aboutYou && delete editUserProfile['userProfile.aboutYou'];
-  !location && delete editUserProfile['userProfile.location'];
-
   try {
+    const usernameExist = await User.findOne(
+      { username: username },
+      'userProfile',
+    );
+
+    if (usernameExist) {
+      res
+        .status(STATUS_CODE.BAD_REQUEST)
+        .json({ message: 'username already taken' });
+      return;
+    }
+
     const updatedUser = await User.findOneAndUpdate(
       { uid: uid },
       { $set: editUserProfile },
+      { omitUndefined: true, new: true },
     );
 
     res.status(STATUS_CODE.OK).json(updatedUser);

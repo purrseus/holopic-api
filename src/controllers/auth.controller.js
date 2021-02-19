@@ -77,9 +77,8 @@ module.exports.loginWithPhoneNumber = async (_, res) => {
 
 module.exports.logout = async (_, res) => {
   const { uid } = res.locals.user;
-
   try {
-    await User.findOneAndUpdate({ uid: uid }, { status: 'INACTIVE' });
+    await User.updateOne({ uid: uid }, { status: 'INACTIVE' });
     res.sendStatus(STATUS_CODE.OK);
   } catch (error) {
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);

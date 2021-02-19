@@ -3,7 +3,11 @@ const { connect } = require('mongoose');
 const connectToDataBase = () => {
   return connect(
     process.env.MONGO_URI,
-    { useNewUrlParser: true, useUnifiedTopology: true },
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    },
     error => {
       if (error) {
         console.log(

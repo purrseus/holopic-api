@@ -1,5 +1,13 @@
 const { Router } = require('express');
+const { celebrate } = require('celebrate');
 const router = Router();
+
+const {
+  uidDto,
+  pageDto,
+  editProfileDto,
+  searchUserDto,
+} = require('../controllers/dto');
 
 const getUser = require('../controllers/user/search/get-user');
 const searchUser = require('../controllers/user/search/search-users');
@@ -11,12 +19,12 @@ const getFollowers = require('../controllers/user/follow/get-followers');
 const getFollowing = require('../controllers/user/follow/get-following');
 
 router.get('/my-account', getMyAccount);
-router.patch('/edit-profile', editProfile);
-router.get('/follow/:uid', follow);
-router.get('/unfollow/:uid', unfollow);
-router.get('/get-followers', getFollowers);
-router.get('/get-following', getFollowing);
-router.get('/search', searchUser);
-router.get('/:uid/', getUser);
+router.patch('/edit-profile', celebrate(editProfileDto), editProfile);
+router.get('/follow/:uid', celebrate(uidDto), follow);
+router.get('/unfollow/:uid', celebrate(uidDto), unfollow);
+router.get('/get-followers', celebrate(pageDto), getFollowers);
+router.get('/get-following', celebrate(pageDto), getFollowing);
+router.get('/search', celebrate(searchUserDto), searchUser);
+router.get('/:uid/', celebrate(uidDto), getUser);
 
 module.exports = router;

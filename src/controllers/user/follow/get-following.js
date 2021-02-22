@@ -5,11 +5,6 @@ const getFollowing = async (req, res) => {
   const { uid } = res.locals.user;
   const { page } = req.query;
 
-  if ((!!page && Number.isNaN(+page)) || +page <= 0) {
-    res.sendStatus(STATUS_CODE.BAD_REQUEST);
-    return;
-  }
-
   try {
     const users = await findUsersService(
       { 'profile.followers': uid },

@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
+const { errors } = require('celebrate');
 const path = require('path');
 require('dotenv').config();
 
@@ -31,8 +32,9 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded;
 
 app.use(GLOBAL_PREFIX, router);
-router.use('/auth', require('./routes/auth.route'));
-router.use('/user', verifyToken, require('./routes/user.route'));
+router.use('/auth', require('./routes/auth'));
+router.use('/user', verifyToken, require('./routes/user'));
+app.use(errors());
 
 app.listen(port, () => {
   console.log(`[Holopic API] Server is running on port ${port}`);

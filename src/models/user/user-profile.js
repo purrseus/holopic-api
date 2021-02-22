@@ -12,8 +12,8 @@ module.exports = new Schema({
   username: {
     type: String,
     required: true,
-    minLength: 1,
-    maxLength: 16,
+    minLength: 4,
+    maxLength: 32,
   },
   avatar: {
     type: String,
@@ -37,6 +37,8 @@ module.exports = new Schema({
     type: String,
     require: false,
     default: '',
+    minLength: 0,
+    maxLength: 255,
   },
   likedShots: {
     type: [String],

@@ -1,6 +1,6 @@
 const User = require('../../models/user');
 
-const findUserService = async (uid, myUid, options) => {
+const findUserService = async (uid, myUid, fields) => {
   const user = await User.aggregate([
     { $match: { uid: uid } },
     {
@@ -12,7 +12,7 @@ const findUserService = async (uid, myUid, options) => {
         'profile.gender': 1,
         'profile.bio': 1,
         'profile.location': 1,
-        ...options,
+        ...fields,
         following: {
           $cond: {
             if: { $in: [myUid, '$profile.followers'] },

@@ -5,11 +5,6 @@ const searchUser = async (req, res) => {
   const { uid } = res.locals.user;
   const { q, page } = req.query;
 
-  if ((!!page && Number.isNaN(+page)) || +page <= 0) {
-    res.sendStatus(STATUS_CODE.BAD_REQUEST);
-    return;
-  }
-
   const regex = new RegExp(q.replace(/[^\w\s]/g, ''), 'i');
 
   try {

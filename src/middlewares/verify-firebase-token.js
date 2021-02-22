@@ -2,13 +2,6 @@ const { auth } = require('firebase-admin');
 const { STATUS_CODE } = require('../constants');
 
 module.exports = async (req, res, next) => {
-  if (!req.body.idToken) {
-    res
-      .status(STATUS_CODE.BAD_REQUEST)
-      .json({ message: 'idToken is required!' });
-    return;
-  }
-
   try {
     const decodedIdToken = await auth().verifyIdToken(req.body.idToken);
     res.locals.decodedIdToken = decodedIdToken;

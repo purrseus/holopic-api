@@ -5,10 +5,6 @@ const { generateAccessToken } = require('../../utilities');
 
 const refreshToken = async (req, res) => {
   const refreshToken = req.body.refreshToken;
-  if (!refreshToken) {
-    res.sendStatus(STATUS_CODE.BAD_REQUEST);
-    return;
-  }
 
   try {
     const { uid } = jwt.verify(refreshToken, process.env.REFRESH_SECRET_KEY);

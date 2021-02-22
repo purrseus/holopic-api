@@ -7,13 +7,13 @@ const unfollowUserService = async (uid, unfollowUid) => {
   );
   if (!user) return false;
 
-  const followUser = await User.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { uid: unfollowUid },
     { $pull: { 'profile.followers': uid } },
     { new: true },
   );
 
-  return !!followUser;
+  return true;
 };
 
 module.exports = unfollowUserService;

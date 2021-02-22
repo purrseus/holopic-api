@@ -10,7 +10,6 @@ const editUserProfileService = async (uid, body) => {
     'profile.avatar': avatar,
     'profile.bio': bio,
     'profile.location': location,
-    updateAt: Date.now(),
   };
 
   const usernameExists = await User.exists({

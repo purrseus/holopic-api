@@ -1,17 +1,7 @@
-const User = require('../models/user.model');
-const { STATUS_CODE } = require('../constants');
+const User = require('../../../models/user');
+const { STATUS_CODE } = require('../../../constants');
 
-module.exports.getMyAccount = async (_, res) => {
-  const { uid } = res.locals.user;
-  try {
-    const user = await User.findOne({ uid: uid });
-    res.status(STATUS_CODE.OK).json(user);
-  } catch (error) {
-    res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);
-  }
-};
-
-module.exports.editProfile = async (req, res) => {
+const editProfile = async (req, res) => {
   const { uid } = res.locals.user;
   const {
     firstName,
@@ -35,22 +25,24 @@ module.exports.editProfile = async (req, res) => {
   };
 
   try {
-    const usernameExist = await User.findOne(
-      { username: username },
-      'userProfile',
-    );
+    const usernameExists = await User.exists({
+      'userProfile.username': username,
+    });
 
-    if (usernameExist) {
+    if (usernameExists) {
       res
-        .status(STATUS_CODE.BAD_REQUEST)
+        .status(STATUS_CODE.CONFLICT)
         .json({ message: 'username already taken' });
       return;
     }
 
     const updatedUser = await User.findOneAndUpdate(
       { uid: uid },
-      { $set: editUserProfile },
-      { omitUndefined: true, new: true },
+      editUserProfile,
+      {
+        omitUndefined: true,
+        new: true,
+      },
     );
 
     res.status(STATUS_CODE.OK).json(updatedUser);
@@ -58,3 +50,5 @@ module.exports.editProfile = async (req, res) => {
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);
   }
 };
+
+module.exports = editProfile;

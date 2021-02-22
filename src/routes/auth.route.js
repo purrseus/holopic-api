@@ -8,7 +8,7 @@ const refreshToken = require('../controllers/auth/refresh-token');
 const loginWithPhoneNumber = require('../controllers/auth/login-with-phone-number');
 const logout = require('../controllers/auth/logout');
 
-router.get('/refresh-token', refreshToken);
+router.post('/refresh-token', refreshToken);
 router.post('/login/phone-number', verifyFirebaseToken, loginWithPhoneNumber);
 router.get('/logout', verifyToken, logout);
 

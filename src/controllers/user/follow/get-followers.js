@@ -1,4 +1,4 @@
-const User = require('../../../models/user');
+const findUsersService = require('../../../services/user/find-users');
 const { STATUS_CODE } = require('../../../constants');
 
 const getFollowers = async (req, res) => {
@@ -11,7 +11,11 @@ const getFollowers = async (req, res) => {
   }
 
   try {
-    const users = await User.find({ 'userProfile.following': uid });
+    const users = await findUsersService(
+      { 'profile.following': uid },
+      uid,
+      page,
+    );
     res.status(STATUS_CODE.OK).json(users);
   } catch (error) {
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);

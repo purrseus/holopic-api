@@ -4,7 +4,7 @@ module.exports = new Schema({
   fullName: {
     type: String,
     required: false,
-    default: 'name',
+    default: '',
     match: /^[\w\s]+$/g,
     minLength: 0,
     maxLength: 64,
@@ -39,7 +39,7 @@ module.exports = new Schema({
     default: '',
   },
   likedShots: {
-    type: [{ id: String, url: String }],
+    type: [String],
     required: true,
     select: false,
   },
@@ -54,7 +54,7 @@ module.exports = new Schema({
     select: false,
   },
   shots: {
-    type: [{ id: String, url: String }],
+    type: [String],
     required: true,
     select: false,
   },

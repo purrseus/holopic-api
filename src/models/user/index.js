@@ -40,9 +40,9 @@ const userSchema = new Schema({
     type: Date,
     required: false,
   },
-  userProfile: {
+  profile: {
     type: userProfileSchema,
-    required: false,
+    required: true,
   },
 });
 

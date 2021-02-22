@@ -1,11 +1,12 @@
-const User = require('../../../models/user');
+const findUserService = require('../../../services/user/find-user');
 const { STATUS_CODE } = require('../../../constants');
 
 const getUser = async (req, res) => {
   const { uid } = req.params;
+  const { uid: myUid } = res.locals.user;
 
   try {
-    const user = await User.findOne({ uid }); // follow ??
+    const user = await findUserService(uid, myUid);
 
     !user
       ? res.status(STATUS_CODE.NOT_FOUND).json({ message: 'Not found' })

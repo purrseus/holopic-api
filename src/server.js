@@ -9,6 +9,7 @@ const { accessLogStream } = require('./configs');
 const initializeFirebaseAdminApp = require('./configs/firebase.config');
 const connectToDataBase = require('./configs/db.config');
 const { GLOBAL_PREFIX, ROOT_DIR, IS_PRODUCTION } = require('./constants');
+const verifyToken = require('./middlewares/verify-token');
 
 const app = express();
 const router = express.Router();
@@ -31,7 +32,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 app.use(GLOBAL_PREFIX, router);
 router.use('/auth', require('./routes/auth.route'));
-router.use('/user', require('./routes/user.route'));
+router.use('/user', verifyToken, require('./routes/user.route'));
 
 app.listen(port, () => {
   console.log(`[Holopic API] Server is running on port ${port}`);

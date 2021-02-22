@@ -1,4 +1,4 @@
-const User = require('../../../models/user');
+const followUserService = require('../../../services/user/follow');
 const { STATUS_CODE } = require('../../../constants');
 
 const follow = async (req, res) => {
@@ -6,30 +6,12 @@ const follow = async (req, res) => {
   const { uid: followUid } = req.params;
 
   try {
-    const user = await User.findOne({ uid });
+    const follow = await followUserService(uid, followUid);
 
-    if (!user) {
-      res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);
-      return;
-    }
-
-    const followUser = await User.findOneAndUpdate(
-      { uid: followUid },
-      {
-        $push: { 'userProfile.followers': user.uid },
-        $inc: { 'userProfile.followersCount': 1 },
-      },
-    );
-
-    if (!followUser) {
+    if (!follow) {
       res.sendStatus(STATUS_CODE.BAD_REQUEST);
       return;
     }
-
-    user.userProfile.following.push(followUser.uid);
-    user.userProfile.followingCount += 1;
-
-    await user.save();
 
     res.sendStatus(STATUS_CODE.OK);
   } catch (error) {

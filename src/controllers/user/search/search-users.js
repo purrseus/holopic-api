@@ -1,7 +1,8 @@
-const User = require('../../../models/user');
+const findUsersService = require('../../../services/user/find-users');
 const { STATUS_CODE } = require('../../../constants');
 
 const searchUser = async (req, res) => {
+  const { uid } = res.locals.user;
   const { q, page } = req.query;
 
   if ((!!page && Number.isNaN(+page)) || +page <= 0) {
@@ -12,9 +13,11 @@ const searchUser = async (req, res) => {
   const regex = new RegExp(q.replace(/[^\w\s]/g, ''), 'i');
 
   try {
-    const users = await User.find({ 'userProfile.fullName': regex }) // follow ??
-      .skip((page - 1) * 10)
-      .limit(10);
+    const users = await findUsersService(
+      { 'profile.fullName': regex },
+      uid,
+      page,
+    );
 
     res.status(STATUS_CODE.OK).json(users);
   } catch (error) {

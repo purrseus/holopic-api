@@ -2,6 +2,7 @@ const User = require('../../models/user');
 const jwt = require('jsonwebtoken');
 const { STATUS_CODE } = require('../../constants');
 const { generateAccessToken } = require('../../utilities');
+const findUserService = require('../../services/user/find-user');
 
 const loginWithPhoneNumber = async (_, res) => {
   const {
@@ -14,22 +15,20 @@ const loginWithPhoneNumber = async (_, res) => {
   };
 
   try {
-    const userExists = await User.findOne({
-      uid: user_id,
-    }).select('status');
+    const userExists = await findUserService(user_id, null, { status: 1 });
 
     if (!userExists) {
-      await User.create({
+      const createdUser = await User.create({
         status: 'ACTIVE',
         phoneNumber: phone_number,
         lastLogin: Date.now(),
         uid: user_id,
-        userProfile: {
+        profile: {
           username: `user_${user_id.slice(-6)}`,
         },
       });
 
-      res.status(STATUS_CODE.CREATED).json(token);
+      res.status(STATUS_CODE.CREATED).json({ token, user: createdUser });
       return;
     }
 
@@ -44,7 +43,7 @@ const loginWithPhoneNumber = async (_, res) => {
     userExists.lastLogin = Date.now();
     await userExists.save();
 
-    res.status(STATUS_CODE.OK).json(token);
+    res.status(STATUS_CODE.OK).json({ token, user: userExists });
   } catch (error) {
     console.log(error);
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);

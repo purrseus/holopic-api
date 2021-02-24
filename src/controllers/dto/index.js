@@ -20,7 +20,7 @@ module.exports.pageDto = {
 
 module.exports.editProfileDto = {
   [Segments.BODY]: Joi.object().keys({
-    fullName: Joi.string().pattern(/^[\w\s]+$/g),
+    fullName: Joi.string().min(0).max(64),
     username: Joi.string().min(4).max(32),
     gender: Joi.string().valid('N/A', 'MALE', 'FEMALE'),
     avatar: Joi.string().min(3),

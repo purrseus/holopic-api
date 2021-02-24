@@ -5,7 +5,6 @@ module.exports = new Schema({
     type: String,
     required: false,
     default: '',
-    match: /^[\w\s]+$/g,
     minLength: 0,
     maxLength: 64,
   },
@@ -18,7 +17,7 @@ module.exports = new Schema({
   avatar: {
     type: String,
     required: true,
-    default: 'images/default-avatar.jpg',
+    default: 'default-avatar.jpg',
   },
   gender: {
     type: String,

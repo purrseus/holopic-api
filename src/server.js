@@ -6,7 +6,7 @@ const { errors } = require('celebrate');
 const path = require('path');
 require('dotenv').config();
 
-const { accessLogStream } = require('./configs');
+const accessLogStream = require('./configs/morgan.config');
 const initializeFirebaseAdminApp = require('./configs/firebase.config');
 const connectToDataBase = require('./configs/db.config');
 const { GLOBAL_PREFIX, ROOT_DIR, IS_PRODUCTION } = require('./constants');
@@ -27,7 +27,7 @@ app.use(
     : morgan('dev'),
 );
 
-app.use(express.static(path.join(ROOT_DIR, 'upload')));
+app.use(express.static(path.join(ROOT_DIR, 'uploads')));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded;
 

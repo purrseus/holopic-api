@@ -11,4 +11,4 @@ const accessLogStream =
     path: path.join(ROOT_DIR, 'log'),
   });
 
-module.exports = { accessLogStream };
+module.exports = accessLogStream;

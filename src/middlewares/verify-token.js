@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { STATUS_CODE } = require('../constants');
 
-module.exports = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
   const token = !!authHeader && authHeader.split(' ')[1];
   if (!token) {
@@ -17,3 +17,5 @@ module.exports = (req, res, next) => {
     res.sendStatus(STATUS_CODE.UNAUTHORIZED);
   }
 };
+
+module.exports = verifyToken;

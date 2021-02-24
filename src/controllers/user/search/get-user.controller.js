@@ -1,4 +1,4 @@
-const findUserService = require('../../../services/user/find-user');
+const findUserService = require('../../../services/user/find-user.service');
 const { STATUS_CODE } = require('../../../constants');
 
 const getUser = async (req, res) => {

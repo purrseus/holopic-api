@@ -1,13 +1,13 @@
-const findUsersService = require('../../../services/user/find-users');
+const findUsersService = require('../../../services/user/find-users.service');
 const { STATUS_CODE } = require('../../../constants');
 
-const getFollowing = async (req, res) => {
+const getFollowers = async (req, res) => {
   const { uid } = res.locals.user;
   const { page } = req.query;
 
   try {
     const users = await findUsersService(
-      { 'profile.followers': uid },
+      { 'profile.following': uid },
       uid,
       page,
     );
@@ -17,4 +17,4 @@ const getFollowing = async (req, res) => {
   }
 };
 
-module.exports = getFollowing;
+module.exports = getFollowers;

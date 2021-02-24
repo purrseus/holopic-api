@@ -1,11 +1,11 @@
 const { Schema, model } = require('mongoose');
 
-const imageSchema = Schema({
+const imageSchema = new Schema({
   status: {
     type: String,
-    enum: ['NORMAL', 'DELETED'],
+    enum: ['UPLOADED', 'DELETED'],
     required: true,
-    default: 'NORMAL',
+    default: 'UPLOADED',
   },
   title: {
     type: String,

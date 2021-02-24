@@ -32,8 +32,9 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded;
 
 app.use(GLOBAL_PREFIX, router);
-router.use('/auth', require('./routes/auth'));
-router.use('/user', verifyToken, require('./routes/user'));
+router.use('/auth', require('./routes/auth.route'));
+router.use('/user', verifyToken, require('./routes/user.route'));
+// image
 app.use(errors());
 
 app.listen(port, () => {

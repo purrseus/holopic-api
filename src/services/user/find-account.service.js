@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+const User = require('../../models/user/user.model');
 
 const findAccountService = async uid => {
   const user = await User.aggregate([

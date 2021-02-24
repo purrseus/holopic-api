@@ -1,4 +1,4 @@
-const unfollowUserService = require('../../../services/user/unfollow');
+const unfollowUserService = require('../../../services/user/unfollow.service');
 const { STATUS_CODE } = require('../../../constants');
 
 const unfollow = async (req, res) => {

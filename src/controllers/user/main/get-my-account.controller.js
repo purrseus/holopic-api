@@ -1,4 +1,4 @@
-const findAccountService = require('../../../services/user/find-account');
+const findAccountService = require('../../../services/user/find-account.service');
 const { STATUS_CODE } = require('../../../constants');
 
 const getMyAccount = async (_, res) => {

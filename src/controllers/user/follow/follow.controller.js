@@ -1,4 +1,4 @@
-const followUserService = require('../../../services/user/follow');
+const followUserService = require('../../../services/user/follow.service');
 const { STATUS_CODE } = require('../../../constants');
 
 const follow = async (req, res) => {

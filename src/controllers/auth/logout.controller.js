@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+const User = require('../../models/user/user.model');
 const { STATUS_CODE } = require('../../constants');
 
 const logout = async (_, res) => {

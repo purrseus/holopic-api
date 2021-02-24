@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+const User = require('../../models/user/user.model');
 
 const unfollowUserService = async (uid, unfollowUid) => {
   const user = await User.findOneAndUpdate(

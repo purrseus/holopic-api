@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+const User = require('../../models/user/user.model');
 
 const editUserProfileService = async (uid, body) => {
   const { fullName, username, gender, avatar, bio, location } = body;

@@ -1,8 +1,8 @@
-const User = require('../../models/user');
+const User = require('../../models/user/user.model');
 
-const findUsersService = async (query, myUid, page) => {
-  const users = await User.aggregate([
-    { $match: query },
+const findUserService = async (uid, myUid, fields) => {
+  const user = await User.aggregate([
+    { $match: { uid: uid } },
     {
       $project: {
         uid: 1,
@@ -12,6 +12,7 @@ const findUsersService = async (query, myUid, page) => {
         'profile.gender': 1,
         'profile.bio': 1,
         'profile.location': 1,
+        ...fields,
         following: {
           $cond: {
             if: { $in: [myUid, '$profile.followers'] },
@@ -21,11 +22,9 @@ const findUsersService = async (query, myUid, page) => {
         },
       },
     },
-    { $skip: (page - 1) * 20 },
-    { $limit: 20 },
   ]);
 
-  return !users.length ? [] : users;
+  return !user.length ? null : user[0];
 };
 
-module.exports = findUsersService;
+module.exports = findUserService;

@@ -1,4 +1,4 @@
-const editUserProfileService = require('../../../services/user/edit-user-profile');
+const editUserProfileService = require('../../../services/user/edit-user-profile.service');
 const { STATUS_CODE } = require('../../../constants');
 
 const editProfile = async (req, res) => {

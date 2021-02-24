@@ -1,8 +1,8 @@
-const User = require('../../models/user');
+const User = require('../../models/user/user.model');
 const jwt = require('jsonwebtoken');
 const { STATUS_CODE } = require('../../constants');
 const { generateAccessToken } = require('../../utilities');
-const findUserService = require('../../services/user/find-user');
+const findUserService = require('../../services/user/find-user.service');
 
 const loginWithPhoneNumber = async (_, res) => {
   const {

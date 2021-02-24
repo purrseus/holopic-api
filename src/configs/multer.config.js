@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
   destination: function (_, __, callback) {
     callback(null, path.join(ROOT_DIR, 'uploads/images'));
   },
-  filename: function (req, { originalname }, callback) {
+  filename: function (_, { originalname }, callback) {
     callback(null, fileName + originalname.match(/\.\w+$/));
   },
 });

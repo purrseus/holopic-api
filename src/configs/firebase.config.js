@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('../../holopic-tn99-firebase-adminsdk.json');
+const serviceAccount = require('../../holopic-nt99-firebase-adminsdk.json');
 
 const initializeFirebaseAdminApp = () => {
   return admin.initializeApp({

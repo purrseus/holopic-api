@@ -5,12 +5,13 @@ const morgan = require('morgan');
 const { errors } = require('celebrate');
 const path = require('path');
 require('dotenv').config();
+require('./configs/cloudinary.config').config();
 
 const accessLogStream = require('./configs/morgan.config');
 const initializeFirebaseAdminApp = require('./configs/firebase.config');
 const connectToDataBase = require('./configs/db.config');
 const { GLOBAL_PREFIX, ROOT_DIR, IS_PRODUCTION } = require('./constants');
-const verifyToken = require('./middlewares/verify-token');
+const verifyToken = require('./middlewares/verify-token.middleware');
 
 const app = express();
 const router = express.Router();
@@ -34,7 +35,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use(GLOBAL_PREFIX, router);
 router.use('/auth', require('./routes/auth.route'));
 router.use('/user', verifyToken, require('./routes/user.route'));
-// image
+router.use('/image', verifyToken, require('./routes/image.route'));
 app.use(errors());
 
 app.listen(port, () => {

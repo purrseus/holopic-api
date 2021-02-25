@@ -13,6 +13,10 @@ const imageSchema = new Schema({
     minLength: 0,
     maxLength: 64,
   },
+  url: {
+    type: String,
+    required: true,
+  },
   user: {
     type: String,
     required: true,

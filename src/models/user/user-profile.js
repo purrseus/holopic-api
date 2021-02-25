@@ -39,7 +39,7 @@ module.exports = new Schema({
     minLength: 0,
     maxLength: 255,
   },
-  likedShots: {
+  myLikes: {
     type: [String],
     required: true,
     select: false,

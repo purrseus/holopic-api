@@ -54,7 +54,7 @@ module.exports = new Schema({
     required: true,
     select: false,
   },
-  shots: {
+  myShots: {
     type: [String],
     required: true,
     select: false,

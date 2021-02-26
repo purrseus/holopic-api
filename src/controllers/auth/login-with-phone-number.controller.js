@@ -19,7 +19,6 @@ const loginWithPhoneNumber = async (_, res) => {
 
     if (!userExists) {
       const createdUser = await User.create({
-        status: 'ACTIVE',
         phoneNumber: phone_number,
         lastLogin: Date.now(),
         uid: user_id,

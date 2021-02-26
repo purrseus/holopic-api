@@ -7,7 +7,7 @@ const userSchema = new Schema(
       type: String,
       enum: ['ACTIVE', 'INACTIVE', 'DELETED'],
       required: true,
-      default: 'INACTIVE',
+      default: 'ACTIVE',
     },
     email: {
       type: String,

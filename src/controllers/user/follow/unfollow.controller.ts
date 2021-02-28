@@ -1,6 +1,6 @@
 import unfollowUserService from '../../../services/user/unfollow.service';
 import { STATUS_CODE } from '../../../constants/index';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const unfollow: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;

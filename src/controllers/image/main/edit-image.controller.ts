@@ -1,19 +1,25 @@
 import editImageService from '../../../services/image/edit-image.service';
 import { STATUS_CODE } from '../../../constants/index';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 import IImage from '../../../models/image/types';
 
 const editImage: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;
   const { imageId } = req.params;
-  const { title, tags }: Pick<IImage, 'title' | 'tags'> = req.body;
+  const { title, tags }: { title: string; tags: string } = req.body;
+  const tagsArr: string[] = tags.split(' ');
+
+  if (tagsArr.length > 20) {
+    res.sendStatus(STATUS_CODE.BAD_REQUEST);
+    return;
+  }
 
   try {
     const editedImage: IImage | null = await editImageService(
       uid as string,
       imageId,
       title as string,
-      tags as string[],
+      tagsArr,
     );
     if (!editedImage) {
       res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);

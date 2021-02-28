@@ -7,7 +7,7 @@ interface IPayload {
 export type GenerateAccessTokenType = (payload: IPayload) => string;
 
 export const generateAccessToken: GenerateAccessTokenType = payload => {
-  return jwt.sign(payload, process.env.ACCESS_SECRET_KEY || 'env', {
+  return jwt.sign(payload, process.env.ACCESS_SECRET_KEY as string, {
     expiresIn: '1h',
   });
 };

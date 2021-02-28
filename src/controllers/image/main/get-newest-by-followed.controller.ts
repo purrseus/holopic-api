@@ -1,7 +1,7 @@
 import { STATUS_CODE } from '../../../constants';
 import IImage from '../../../models/image/types';
 import getNewestByFollowedService from '../../../services/image/get-newest-by-followed.service';
-import { ControllerType, UidType } from '../../controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const getNewestByFollowed: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;

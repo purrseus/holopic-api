@@ -1,6 +1,6 @@
 import User from '../../models/user/user.model';
 import { STATUS_CODE, UserStatus } from '../../constants/index';
-import { ControllerType, UidType } from '../../controllers/controller-type';
+import { ControllerType, UidType } from '../types';
 
 const logout: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;

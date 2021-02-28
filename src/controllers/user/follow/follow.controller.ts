@@ -1,6 +1,6 @@
 import followUserService from '../../../services/user/follow.service';
 import { STATUS_CODE } from '../../../constants/index';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const follow: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;

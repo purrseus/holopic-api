@@ -4,7 +4,7 @@ import { STATUS_CODE, UserStatus } from '../../constants/index';
 import { generateAccessToken } from '../../utilities/index';
 import findUserService from '../../services/user/find-user.service';
 import IUser from '../../models/user/types';
-import { ControllerType, IToken } from '../../controllers/controller-type';
+import { ControllerType, IToken } from '../types';
 
 interface IDecodedIdToken {
   phone_number: string;

@@ -1,13 +1,14 @@
 import uploadImageService from '../../../services/image/upload-image.service';
 import { STATUS_CODE } from '../../../constants/index';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 import IImage from '../../../models/image/types';
 
 const uploadImage: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;
-  const { title, tags }: Pick<IImage, 'title' | 'tags'> = req.body.data;
+  const { title, tags }: { title: string; tags: string } = req.body;
+  const tagsArr: string[] = tags.split(' ');
 
-  if (!req.file || (tags && tags.length > 20)) {
+  if (!req.file || tagsArr.length > 20) {
     res.sendStatus(STATUS_CODE.BAD_REQUEST);
     return;
   }
@@ -17,7 +18,7 @@ const uploadImage: ControllerType = async (req, res) => {
       uid as string,
       req.file.path,
       title as string,
-      tags as string[],
+      tagsArr,
     );
 
     if (!createdImage) {
@@ -25,7 +26,7 @@ const uploadImage: ControllerType = async (req, res) => {
       return;
     }
 
-    res.status(STATUS_CODE.CREATED);
+    res.sendStatus(STATUS_CODE.CREATED);
   } catch (error) {
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);
   }

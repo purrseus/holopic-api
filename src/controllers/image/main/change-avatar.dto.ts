@@ -1,9 +1,10 @@
 import { STATUS_CODE } from '../../../constants';
 import changeAvatarService from '../../../services/image/change-avatar.service';
-import { ControllerType, UidType } from '../../controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const changeAvatar: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;
+  const { publicId } = req.body;
 
   if (!req.file) {
     res.sendStatus(STATUS_CODE.BAD_REQUEST);
@@ -14,7 +15,7 @@ const changeAvatar: ControllerType = async (req, res) => {
     const changedAvatar = await changeAvatarService(
       uid as string,
       req.file.path,
-      req.body.publicId,
+      publicId,
     );
 
     res.status(STATUS_CODE.OK).json(changedAvatar);

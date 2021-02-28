@@ -1,6 +1,6 @@
 import { STATUS_CODE } from '../../../constants';
 import unlikeImageService from '../../../services/image/unlike-image.service';
-import { ControllerType, UidType } from '../../controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const unlike: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;

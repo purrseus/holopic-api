@@ -1,6 +1,6 @@
 import editUserProfileService from '../../../services/user/edit-user-profile.service';
 import { STATUS_CODE } from '../../../constants/index';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 import { IAccount } from '../../../models/user/types';
 
 const editProfile: ControllerType = async (req, res) => {

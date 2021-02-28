@@ -12,7 +12,7 @@ const verifyFirebaseToken: MiddlewareType = async (req, res, next) => {
   } catch (error) {
     res
       .status(STATUS_CODE.UNAUTHORIZED)
-      .json({ message: error.errorInfo.message.replace(/\. .+$/g, '') });
+      .json({ message: error?.errorInfo?.message?.replace(/\. .+$/g, '') });
   }
 };
 

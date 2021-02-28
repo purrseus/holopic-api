@@ -1,7 +1,7 @@
 import { STATUS_CODE } from '../../../constants';
 import IImage from '../../../models/image/types';
 import findMyLikesService from '../../../services/image/find-my-likes.service';
-import { ControllerType, UidType } from '../../controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const getMyLikes: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;

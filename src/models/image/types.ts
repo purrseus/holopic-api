@@ -7,7 +7,7 @@ export default interface IImage extends Document {
   publicId?: string;
   url?: string;
   user?: string;
-  tags?: string[];
+  tags?: string[] | string;
   views?: string[] | number;
   likes?: string[] | number;
   liked?: boolean;

@@ -1,6 +1,6 @@
 import deleteImageService from '../../../services/image/delete-image.service';
 import { STATUS_CODE } from '../../../constants/index';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 import IImage from '../../../models/image/types';
 
 const deleteImage: ControllerType = async (req, res) => {

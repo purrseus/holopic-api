@@ -29,7 +29,6 @@ const deleteImageService: DeleteImageServiceType = async (uid, imageId) => {
     { publicId: imageId },
     {
       status: ImageStatus.DELETED,
-      url: 'deleted',
     },
     { new: true },
   );

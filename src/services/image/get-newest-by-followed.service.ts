@@ -14,7 +14,7 @@ const getNewestByFollowedService: GetNewestByFollowedType = async (
     {
       $project: {
         _id: 0,
-        following: '$project.following',
+        following: '$profile.following',
       },
     },
   ]);

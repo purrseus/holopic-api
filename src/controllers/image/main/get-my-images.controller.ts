@@ -1,7 +1,7 @@
 import { ImageStatus, STATUS_CODE } from '../../../constants';
 import IImage from '../../../models/image/types';
 import findImagesService from '../../../services/image/find-images.services';
-import { ControllerType, UidType } from '../../controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const getMyImages: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;

@@ -21,10 +21,10 @@ import imageRoute from './routes/image.route';
 
 const app: Application = express();
 const router: Router = express.Router();
-cloudinaryConfig.config();
 const port: string | number = process.env.PORT || 3000;
 
 initializeFirebaseAdminApp();
+cloudinaryConfig.config();
 connectToDataBase();
 
 app.use(cors());

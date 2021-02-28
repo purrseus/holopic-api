@@ -1,6 +1,6 @@
 import findUsersService from '../../../services/user/find-users.service';
 import { STATUS_CODE } from '../../../constants/index';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 import IUser from '../../../models/user/types';
 
 const getFollowing: ControllerType = async (req, res) => {

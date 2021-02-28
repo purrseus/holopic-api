@@ -1,7 +1,7 @@
 import findUserService from '../../../services/user/find-user.service';
 import { STATUS_CODE } from '../../../constants/index';
 import IUser from '../../../models/user/types';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const getUser: ControllerType = async (req, res) => {
   const { uid: myUid }: UidType = res.locals.user;

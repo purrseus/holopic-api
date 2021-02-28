@@ -1,6 +1,6 @@
 import { STATUS_CODE } from '../../../constants';
 import viewImageService from '../../../services/image/view-image.service';
-import { ControllerType, UidType } from '../../controller-type';
+import { ControllerType, UidType } from '../../types';
 
 const view: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;

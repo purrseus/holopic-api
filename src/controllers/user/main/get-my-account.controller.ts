@@ -1,6 +1,6 @@
 import findAccountService from '../../../services/user/find-account.service';
 import { STATUS_CODE } from '../../../constants/index';
-import { ControllerType, UidType } from '../../../controllers/controller-type';
+import { ControllerType, UidType } from '../../types';
 import { IAccount } from '../../../models/user/types';
 
 const getMyAccount: ControllerType = async (req, res) => {

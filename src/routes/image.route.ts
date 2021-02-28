@@ -3,13 +3,11 @@ import { celebrate } from 'celebrate';
 const router: Router = Router();
 import upload from '../configs/multer.config';
 
-import uploadImageDto from '../dto/image/upload-image.dto';
 import editImageDto from '../dto/image/edit-image.dto';
 import imageIdDto from '../dto/image/image-id.dto';
 import pageDto from '../dto/page.dto';
 import getImagesUserDto from '../dto/image/get-images-user.dto';
 import searchDto from '../dto/search.dto';
-import changeAvatarDto from '../dto/image/change-avatar.dto';
 
 import uploadImage from '../controllers/image/main/upload-image.controller';
 import editImage from '../controllers/image/main/edit-image.controller';
@@ -25,18 +23,8 @@ import searchImages from '../controllers/image/search/search-images.controller';
 import view from '../controllers/image/like/view.controller';
 import changeAvatar from '../controllers/image/main/change-avatar.dto';
 
-router.post(
-  '/upload-image',
-  celebrate(uploadImageDto),
-  upload.single('image'),
-  uploadImage,
-);
-router.post(
-  '/change-avatar',
-  celebrate(changeAvatarDto),
-  upload.single('avatar'),
-  changeAvatar,
-);
+router.post('/upload-image', upload.single('image'), uploadImage);
+router.post('/change-avatar', upload.single('avatar'), changeAvatar);
 router.patch('/edit-image/:imageId', celebrate(editImageDto), editImage);
 router.delete('/delete-image/:imageId', celebrate(imageIdDto), deleteImage);
 router.get('/my-images', celebrate(pageDto), getMyImages);

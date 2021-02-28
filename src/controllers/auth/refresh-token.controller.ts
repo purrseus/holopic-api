@@ -5,7 +5,7 @@ import {
   generateAccessToken,
   GenerateAccessTokenType,
 } from '../../utilities/index';
-import { ControllerType, IToken } from '../../controllers/controller-type';
+import { ControllerType, IToken } from '../types';
 
 const refreshToken: ControllerType = async (req, res) => {
   const { refreshToken }: Pick<IToken, 'refreshToken'> = req.body;

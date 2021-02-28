@@ -1,11 +1,11 @@
-import { Schema } from 'mongoose';
+import { Document, Model, Schema } from 'mongoose';
 import { UserGender } from '../../constants';
 import ISchema, { IStringSchema } from '../types';
 
 interface IDefinition {
   fullName: IStringSchema<StringConstructor>;
   username: IStringSchema<StringConstructor>;
-  avatar: IStringSchema<StringConstructor>;
+  avatar: ISchema<Schema<Document<any>, Model<Document<any>>, undefined>>;
   gender: IStringSchema<StringConstructor>;
   bio: IStringSchema<StringConstructor>;
   location: IStringSchema<StringConstructor>;
@@ -14,6 +14,20 @@ interface IDefinition {
   followers: ISchema<StringConstructor[]>;
   myShots: ISchema<StringConstructor[]>;
 }
+
+const avatarSchema = new Schema({
+  url: {
+    type: String,
+    required: true,
+    default:
+      'https://res.cloudinary.com/holopic/image/upload/v1614434435/default-avatar_fjtr87.jpg',
+  },
+  publicId: {
+    type: String,
+    required: false,
+    default: '',
+  },
+});
 
 const definition: IDefinition = {
   fullName: {
@@ -30,10 +44,8 @@ const definition: IDefinition = {
     maxLength: 32,
   },
   avatar: {
-    type: String,
+    type: avatarSchema,
     required: true,
-    default:
-      'https://res.cloudinary.com/holopic/image/upload/v1614434435/default-avatar_fjtr87.jpg',
   },
   gender: {
     type: String,

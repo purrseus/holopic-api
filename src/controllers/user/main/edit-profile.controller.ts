@@ -1,13 +1,13 @@
 import editUserProfileService from '../../../services/user/edit-user-profile.service';
 import { STATUS_CODE } from '../../../constants/index';
 import { ControllerType, UidType } from '../../../controllers/controller-type';
-import IUser from '../../../models/user/types';
+import { IAccount } from '../../../models/user/types';
 
 const editProfile: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;
 
   try {
-    const updatedUser: IUser | null = await editUserProfileService(
+    const updatedUser: IAccount | null = await editUserProfileService(
       uid as string,
       req.body,
     );

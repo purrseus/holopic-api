@@ -8,9 +8,8 @@ export default interface IImage extends Document {
   url?: string;
   user?: string;
   tags?: string[];
-  views?: string[];
-  likes?: string[];
+  views?: string[] | number;
+  likes?: string[] | number;
   liked?: boolean;
   likeIndex?: number;
-  viewCount?: number;
 }

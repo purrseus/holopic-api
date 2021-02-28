@@ -1,22 +1,21 @@
 import User from '../../models/user/user.model';
-import IUser, { IProfile } from '../../models/user/types';
+import { IAccount, IProfile } from '../../models/user/types';
 
 type EditUserProfileServiceType = (
   uid: string,
-  body: IProfile,
-) => Promise<IUser | null>;
+  body: Omit<IProfile, 'avatar'>,
+) => Promise<IAccount | null>;
 
 const editUserProfileService: EditUserProfileServiceType = async (
   uid,
   body,
 ) => {
-  const { fullName, username, gender, avatar, bio, location } = body;
+  const { fullName, username, gender, bio, location } = body;
 
   const editProfile: Record<string, string | undefined> = {
     'profile.fullName': fullName,
     'profile.username': username,
     'profile.gender': gender,
-    'profile.avatar': avatar,
     'profile.bio': bio,
     'profile.location': location,
   };
@@ -27,7 +26,7 @@ const editUserProfileService: EditUserProfileServiceType = async (
 
   if (usernameExists) return null;
 
-  const updatedUser: IUser | null = await User.findOneAndUpdate(
+  const updatedUser: IAccount | null = await User.findOneAndUpdate(
     { uid },
     editProfile,
     {

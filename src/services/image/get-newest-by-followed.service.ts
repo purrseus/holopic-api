@@ -35,7 +35,8 @@ const getNewestByFollowedService: GetNewestByFollowedType = async (
         liked: {
           $cond: { if: { $in: [uid, '$likes'] }, then: true, else: false },
         },
-        viewCount: { $size: '$views' },
+        views: { $size: '$views' },
+        likes: { $size: '$likes' },
       },
     },
   ]);

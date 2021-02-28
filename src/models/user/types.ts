@@ -1,10 +1,15 @@
 import { Document } from 'mongoose';
 import { UserStatus } from '../../constants/index';
 
+interface IAvatar {
+  url: string;
+  publicId: string;
+}
+
 export interface IProfile {
   fullName: string;
   username: string;
-  avatar: string;
+  avatar: IAvatar;
   gender: string;
   bio: string;
   location: string;
@@ -20,7 +25,7 @@ export default interface IUser extends Document {
 
 export interface IAccount extends IUser {
   email?: string;
-  phoneNumber: string;
-  myLikes: number;
-  followers: number;
+  phoneNumber?: string;
+  myLikes?: number;
+  followers?: number;
 }

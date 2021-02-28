@@ -15,7 +15,8 @@ const getNewImagesService: GetNewImagesServiceType = async (uid, page) => {
         liked: {
           $cond: { if: { $in: [uid, '$likes'] }, then: true, else: false },
         },
-        viewCount: { $size: '$views' },
+        views: { $size: '$views' },
+        likes: { $size: '$likes' },
       },
     },
   ]);

@@ -1,4 +1,4 @@
-import { IAccount } from '../../models/user/types';
+import { IAccount, IAvatar } from '../../models/user/types';
 import { UploadApiResponse, v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
 import User from '../../models/user/user.model';
@@ -7,7 +7,7 @@ type ChangeAvatarServiceType = (
   uid: string,
   imagePath: string,
   publicId: string,
-) => Promise<IAccount | null>;
+) => Promise<IAvatar | null>;
 
 const changeAvatarService: ChangeAvatarServiceType = async (
   uid,
@@ -28,6 +28,7 @@ const changeAvatarService: ChangeAvatarServiceType = async (
     return null;
   }
   fs.unlinkSync(imagePath);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const updatedUser: IAccount | null = await User.findOneAndUpdate(
     { uid },
     {
@@ -40,7 +41,7 @@ const changeAvatarService: ChangeAvatarServiceType = async (
     },
   );
 
-  return updatedUser;
+  return { url: result.url, publicId: result.public_id };
 };
 
 export default changeAvatarService;

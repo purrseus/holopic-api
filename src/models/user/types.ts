@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 import { UserStatus } from '../../constants/index';
 
-interface IAvatar {
+export interface IAvatar {
   url: string;
   publicId: string;
 }

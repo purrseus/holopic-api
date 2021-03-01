@@ -3,16 +3,17 @@ import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
 import { errors } from 'celebrate';
-import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 import dotenv from 'dotenv';
 dotenv.config();
 
+import swaggerDocument from '../swagger.json';
 import accessLogStream from './configs/morgan.config';
 import initializeFirebaseAdminApp from './configs/firebase.config';
 import connectToDataBase from './configs/db.config';
 
 import cloudinaryConfig from './configs/cloudinary.config';
-import { GLOBAL_PREFIX, ROOT_DIR, IS_PRODUCTION } from './constants/index';
+import { GLOBAL_PREFIX, IS_PRODUCTION } from './constants/index';
 import verifyToken from './middlewares/verify-token.middleware';
 
 import authRoute from './routes/auth.route';
@@ -35,9 +36,9 @@ app.use(
     : morgan('dev'),
 );
 
-app.use(express.static(path.join(ROOT_DIR, 'uploads')));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded;
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(GLOBAL_PREFIX, router);
 router.use('/auth', authRoute);

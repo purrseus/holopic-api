@@ -1,4 +1,5 @@
 import { STATUS_CODE } from '../../../constants';
+import { IAvatar } from '../../../models/user/types';
 import changeAvatarService from '../../../services/image/change-avatar.service';
 import { ControllerType, UidType } from '../../types';
 
@@ -12,7 +13,7 @@ const changeAvatar: ControllerType = async (req, res) => {
   }
 
   try {
-    const changedAvatar = await changeAvatarService(
+    const changedAvatar: IAvatar | null = await changeAvatarService(
       uid as string,
       req.file.path,
       publicId,

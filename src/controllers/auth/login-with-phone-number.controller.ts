@@ -27,6 +27,7 @@ const loginWithPhoneNumber: ControllerType = async (req, res) => {
     });
 
     if (!userExists) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const createdUser: IUser = await User.create({
         phoneNumber: phone_number,
         lastLogin: Date.now(),
@@ -36,7 +37,7 @@ const loginWithPhoneNumber: ControllerType = async (req, res) => {
         },
       });
 
-      res.status(STATUS_CODE.CREATED).json({ token, user: createdUser });
+      res.status(STATUS_CODE.CREATED).json({ token });
       return;
     }
 
@@ -51,7 +52,7 @@ const loginWithPhoneNumber: ControllerType = async (req, res) => {
     userExists.lastLogin = Date.now();
     await userExists.save();
 
-    res.status(STATUS_CODE.OK).json({ token, user: userExists });
+    res.status(STATUS_CODE.OK).json({ token });
   } catch (error) {
     console.log(error);
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);

@@ -27,9 +27,7 @@
   "paths": {
     "/auth/login/phone-number": {
       "post": {
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "Login with phone number",
         "requestBody": {
           "required": true,
@@ -87,9 +85,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "User logout",
         "responses": {
           "200": {
@@ -103,9 +99,7 @@
     },
     "/auth/refresh-token": {
       "post": {
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "Get new access token",
         "requestBody": {
           "required": true,
@@ -142,9 +136,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Get info account",
         "responses": {
           "200": {
@@ -185,9 +177,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Edit info in account",
         "requestBody": {
           "content": {
@@ -225,9 +215,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Follow user",
         "parameters": [
           {
@@ -259,9 +247,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Unfollow user",
         "parameters": [
           {
@@ -293,9 +279,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Get followers of user",
         "parameters": [
           {
@@ -335,9 +319,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Get following of user",
         "parameters": [
           {
@@ -377,9 +359,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Search users",
         "parameters": [
           {
@@ -427,9 +407,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Get another user",
         "parameters": [
           {
@@ -480,9 +458,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Upload an image",
         "requestBody": {
           "required": true,
@@ -525,9 +501,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Change avatar",
         "requestBody": {
           "required": true,
@@ -553,7 +527,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type":"object",
+                  "type": "object",
                   "properties": {
                     "url": {
                       "type": "string"
@@ -582,9 +556,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Edit info image",
         "parameters": [
           {
@@ -634,9 +606,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Delete image",
         "parameters": [
           {
@@ -666,9 +636,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Get images of user",
         "parameters": [
           {
@@ -708,9 +676,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Get new images",
         "parameters": [
           {
@@ -750,9 +716,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Get new images following",
         "parameters": [
           {
@@ -792,9 +756,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Like image",
         "parameters": [
           {
@@ -827,9 +789,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Unlike image",
         "parameters": [
           {
@@ -862,9 +822,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Get liked images",
         "parameters": [
           {
@@ -904,9 +862,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "View image",
         "parameters": [
           {
@@ -936,9 +892,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Get images of another user",
         "parameters": [
           {
@@ -986,9 +940,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "image"
-        ],
+        "tags": ["image"],
         "summary": "Search images",
         "parameters": [
           {
@@ -1097,11 +1049,7 @@
           },
           "gender": {
             "type": "string",
-            "enum": [
-              "N/A",
-              "MALE",
-              "FEMALE"
-            ]
+            "enum": ["N/A", "MALE", "FEMALE"]
           },
           "bio": {
             "type": "string"
@@ -1151,11 +1099,7 @@
               },
               "gender": {
                 "type": "string",
-                "enum": [
-                  "N/A",
-                  "MALE",
-                  "FEMALE"
-                ]
+                "enum": ["N/A", "MALE", "FEMALE"]
               },
               "bio": {
                 "type": "string"

@@ -18,7 +18,7 @@ interface IDefinition {
 const avatarSchema = new Schema({
   url: {
     type: String,
-    required: true,
+    required: false,
     default:
       'https://res.cloudinary.com/holopic/image/upload/v1614434435/default-avatar_fjtr87.jpg',
   },
@@ -45,7 +45,7 @@ const definition: IDefinition = {
   },
   avatar: {
     type: avatarSchema,
-    required: true,
+    required: false,
   },
   gender: {
     type: String,

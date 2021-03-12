@@ -36,6 +36,8 @@ app.use(
     : morgan('dev'),
 );
 
+app.get('/', (_, res) => res.redirect('/api-docs'));
+
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded;
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

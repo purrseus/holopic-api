@@ -33,6 +33,10 @@ const loginWithPhoneNumber: ControllerType = async (req, res) => {
         lastLogin: Date.now(),
         uid: user_id,
         profile: {
+          avatar: {
+            url:
+              'https://res.cloudinary.com/holopic/image/upload/v1614434435/default-avatar_fjtr87.jpg',
+          },
           username: `user_${user_id.slice(-6)}`,
         },
       });

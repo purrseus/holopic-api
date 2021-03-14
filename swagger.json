@@ -1062,9 +1062,6 @@
       "Account": {
         "type": "object",
         "properties": {
-          "status": {
-            "type": "string"
-          },
           "email": {
             "type": "string"
           },
@@ -1072,9 +1069,6 @@
             "type": "string"
           },
           "uid": {
-            "type": "string"
-          },
-          "lastLogin": {
             "type": "string"
           },
           "profile": {

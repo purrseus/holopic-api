@@ -10,7 +10,7 @@ type FindImagesServiceType = (
 const findImagesService: FindImagesServiceType = async (uid, page, query) => {
   const myImages: IImage[] = await Image.aggregate([
     { $match: query },
-    { $sort: { createAt: -1 } },
+    { $sort: { createdAt: -1 } },
     { $skip: (+page - 1) * 20 },
     { $limit: 20 },
     {

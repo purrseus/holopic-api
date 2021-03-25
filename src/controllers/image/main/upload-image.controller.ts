@@ -8,7 +8,7 @@ const uploadImage: ControllerType = async (req, res) => {
   const { title, tags }: { title: string; tags: string } = req.body;
   const tagsArr: string[] = tags.split(' ');
 
-  if (!req.file || tagsArr.length > 20) {
+  if (!req.file) {
     res.sendStatus(STATUS_CODE.BAD_REQUEST);
     return;
   }
@@ -18,7 +18,7 @@ const uploadImage: ControllerType = async (req, res) => {
       uid as string,
       req.file.path,
       title as string,
-      tagsArr,
+      tagsArr.filter(tag => tag !== ''),
     );
 
     if (!createdImage) {

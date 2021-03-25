@@ -7,7 +7,7 @@ type GetNewImagesServiceType = (uid: string, page: string) => Promise<IImage[]>;
 const getNewImagesService: GetNewImagesServiceType = async (uid, page) => {
   const newImages: IImage[] = await Image.aggregate([
     { $match: { status: ImageStatus.UPLOADED } },
-    { $sort: { createAt: -1 } },
+    { $sort: { createdAt: -1 } },
     { $skip: (+page - 1) * 20 },
     { $limit: 20 },
     {

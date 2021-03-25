@@ -20,7 +20,9 @@ export default interface IUser extends Document {
   uid?: string;
   profile?: IProfile;
   lastLogin?: Date | number;
-  following?: boolean | number;
+  following?: number;
+  isFollowing?: boolean;
+  images?: number;
 }
 
 export interface IAccount extends IUser {

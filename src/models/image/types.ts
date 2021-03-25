@@ -6,10 +6,14 @@ export default interface IImage extends Document {
   title?: string;
   publicId?: string;
   url?: string;
+  width?: number;
+  height?: number;
   user?: string;
   tags?: string[] | string;
   views?: string[] | number;
   likes?: string[] | number;
   liked?: boolean;
   likeIndex?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }

@@ -27,7 +27,7 @@ const getNewestByFollowedService: GetNewestByFollowedType = async (
 
   const newestByFollowed: IImage[] = await Image.aggregate([
     { $match: { user: { $in: followByUser }, status: ImageStatus.UPLOADED } },
-    { $sort: { createAt: -1 } },
+    { $sort: { createdAt: -1 } },
     { $skip: (+page - 1) * 20 },
     { $limit: 20 },
     {

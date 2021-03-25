@@ -7,11 +7,11 @@ const searchUser: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;
   const { q, page } = req.query;
 
-  const regex: RegExp = new RegExp((q as string).replace(/[^\w\s]/g, ''), 'i');
+  const regex: RegExp = new RegExp((q as string).replace(/[^\w_]/g, ''), 'i');
 
   try {
     const users: IUser[] = await findUsersService(
-      { 'profile.fullName': regex },
+      { 'profile.username': regex },
       uid as string,
       page as string,
     );

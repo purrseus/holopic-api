@@ -885,6 +885,46 @@
         }
       }
     },
+    "/image/{imageId}": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["image"],
+        "summary": "Get image",
+        "parameters": [
+          {
+            "name": "imageId",
+            "in": "path",
+            "description": "ID of image",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Image"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/image/images": {
       "get": {
         "security": [
@@ -1004,6 +1044,12 @@
           "url": {
             "type": "string"
           },
+          "width": {
+            "type": "number"
+          },
+          "height": {
+            "type": "number"
+          },
           "user": {
             "type": "string"
           },
@@ -1030,8 +1076,17 @@
           "uid": {
             "type": "string"
           },
-          "following": {
+          "isFollowing": {
             "type": "boolean"
+          },
+          "images": {
+            "type": "number"
+          },
+          "following": {
+            "type": "number"
+          },
+          "followers": {
+            "type": "number"
           },
           "profile": {
             "$ref": "#/components/schemas/Profile"
@@ -1046,6 +1101,17 @@
           },
           "username": {
             "type": "string"
+          },
+          "avatar": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "publicId": {
+                "type": "string"
+              }
+            }
           },
           "gender": {
             "type": "string",
@@ -1070,6 +1136,18 @@
           },
           "uid": {
             "type": "string"
+          },
+          "myLikes": {
+            "type": "number"
+          },
+          "followers": {
+            "type": "number"
+          },
+          "following": {
+            "type": "number"
+          },
+          "images": {
+            "type": "number"
           },
           "profile": {
             "type": "object",
@@ -1100,15 +1178,6 @@
               },
               "location": {
                 "type": "string"
-              },
-              "myLikes": {
-                "type": "number"
-              },
-              "followers": {
-                "type": "number"
-              },
-              "following": {
-                "type": "number"
               }
             }
           }

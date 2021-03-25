@@ -9,17 +9,12 @@ const editImage: ControllerType = async (req, res) => {
   const { title, tags }: { title: string; tags: string } = req.body;
   const tagsArr: string[] = tags.split(' ');
 
-  if (tagsArr.length > 20) {
-    res.sendStatus(STATUS_CODE.BAD_REQUEST);
-    return;
-  }
-
   try {
     const editedImage: IImage | null = await editImageService(
       uid as string,
       imageId,
       title as string,
-      tagsArr,
+      tagsArr.filter(tag => tag !== ''),
     );
     if (!editedImage) {
       res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);

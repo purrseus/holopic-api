@@ -21,7 +21,10 @@ const findUsersService: FindUsersServiceType = async (query, myUid, page) => {
         'profile.gender': 1,
         'profile.bio': 1,
         'profile.location': 1,
-        following: {
+        followers: { $size: '$profile.followers' },
+        following: { $size: '$profile.following' },
+        images: { $size: '$profile.myShots' },
+        isFollowing: {
           $cond: {
             if: { $in: [myUid, '$profile.followers'] },
             then: true,

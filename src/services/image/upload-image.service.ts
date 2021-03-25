@@ -28,6 +28,8 @@ const uploadImageService: UploadImageServiceType = async (
     tags: tags,
     publicId: result.public_id,
     url: result.url,
+    width: result.width,
+    height: result.height,
     user: uid,
   });
 

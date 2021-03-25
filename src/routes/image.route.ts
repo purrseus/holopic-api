@@ -8,6 +8,7 @@ import imageIdDto from '../dto/image/image-id.dto';
 import pageDto from '../dto/page.dto';
 import getImagesUserDto from '../dto/image/get-images-user.dto';
 import searchDto from '../dto/search.dto';
+import changeAvatar from '../controllers/image/main/change-avatar.dto';
 
 import uploadImage from '../controllers/image/main/upload-image.controller';
 import editImage from '../controllers/image/main/edit-image.controller';
@@ -21,7 +22,7 @@ import getNewestByFollowed from '../controllers/image/main/get-newest-by-followe
 import getImagesUser from '../controllers/image/search/get-images-user.controller';
 import searchImages from '../controllers/image/search/search-images.controller';
 import view from '../controllers/image/like/view.controller';
-import changeAvatar from '../controllers/image/main/change-avatar.dto';
+import getImageUser from '../controllers/image/search/get-image-user.controller';
 
 router.post('/upload-image', upload.single('image'), uploadImage);
 router.post('/change-avatar', upload.single('avatar'), changeAvatar);
@@ -38,5 +39,6 @@ router.get('/view/:imageId', celebrate(imageIdDto), view);
 
 router.get('/images', celebrate(getImagesUserDto), getImagesUser);
 router.get('/search', celebrate(searchDto), searchImages);
+router.get('/:imageId', celebrate(imageIdDto), getImageUser);
 
 export default router;

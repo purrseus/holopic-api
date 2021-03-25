@@ -19,12 +19,16 @@ const findUserService: FindUserServiceType = async (uid, myUid, fields) => {
         uid: 1,
         'profile.fullName': 1,
         'profile.username': 1,
-        'profile.avatar': 1,
+        'profile.avatar.url': 1,
+        'profile.avatar.publicId': 1,
         'profile.gender': 1,
         'profile.bio': 1,
         'profile.location': 1,
+        followers: { $size: '$profile.followers' },
+        following: { $size: '$profile.following' },
+        images: { $size: '$profile.myShots' },
         ...fields,
-        following: {
+        isFollowing: {
           $cond: {
             if: { $in: [myUid, '$profile.followers'] },
             then: true,

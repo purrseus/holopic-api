@@ -1,4 +1,4 @@
-import ISchema, { IStringSchema } from '../types';
+import ISchema, { INumberSchema, IStringSchema } from '../types';
 import { Schema, model, SchemaOptions } from 'mongoose';
 
 interface IDefinition {
@@ -6,6 +6,8 @@ interface IDefinition {
   title: IStringSchema<StringConstructor>;
   publicId: IStringSchema<StringConstructor>;
   url: IStringSchema<StringConstructor>;
+  width: INumberSchema<NumberConstructor>;
+  height: INumberSchema<NumberConstructor>;
   user: IStringSchema<StringConstructor>;
   tags: ISchema<StringConstructor[]>;
   views: ISchema<StringConstructor[]>;
@@ -32,6 +34,14 @@ const definition: IDefinition = {
   url: {
     type: String,
     required: false,
+  },
+  width: {
+    type: Number,
+    required: true,
+  },
+  height: {
+    type: Number,
+    required: true,
   },
   user: {
     type: String,

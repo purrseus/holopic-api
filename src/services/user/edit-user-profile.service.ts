@@ -20,11 +20,11 @@ const editUserProfileService: EditUserProfileServiceType = async (
     'profile.location': location,
   };
 
-  const usernameExists: boolean = await User.exists({
+  const usernameExists: IAccount[] = await User.find({
     'profile.username': username,
   });
 
-  if (usernameExists) return null;
+  if (usernameExists.length >= 2) return null;
 
   const updatedUser: IAccount | null = await User.findOneAndUpdate(
     { uid },

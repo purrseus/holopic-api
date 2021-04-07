@@ -12,7 +12,7 @@
     "prettier": "prettier --config ./.prettierrc.js --ignore-path ./.gitignore --write . -c",
     "commit": "cz"
   },
-  "author": "Do Ngoc Thien",
+  "author": "Thien Do",
   "license": "ISC",
   "dependencies": {
     "celebrate": "^13.0.4",

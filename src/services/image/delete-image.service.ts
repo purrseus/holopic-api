@@ -33,6 +33,11 @@ const deleteImageService: DeleteImageServiceType = async (uid, imageId) => {
     { new: true },
   );
 
+  await User.findOneAndUpdate(
+    { uid },
+    { $pullAll: { 'profile.myShots': [imageId] } },
+  );
+
   return editedImage;
 };
 

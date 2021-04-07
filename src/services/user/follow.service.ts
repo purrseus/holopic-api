@@ -7,6 +7,13 @@ type FollowUserServiceType = (
 ) => Promise<boolean>;
 
 const followUserService: FollowUserServiceType = async (uid, followUid) => {
+  const followed: IUser | null = await User.findOne({
+    uid,
+    'profile.following': followUid,
+  });
+
+  if (followed) return true;
+
   const updatedFollowingUser: IUser | null = await User.findOneAndUpdate(
     { uid },
     { $push: { 'profile.following': followUid } },

@@ -8,9 +8,9 @@ import imageIdDto from '../dto/image/image-id.dto';
 import pageDto from '../dto/page.dto';
 import getImagesUserDto from '../dto/image/get-images-user.dto';
 import searchDto from '../dto/search.dto';
-import changeAvatar from '../controllers/image/main/change-avatar.dto';
 
 import uploadImage from '../controllers/image/main/upload-image.controller';
+import changeAvatar from '../controllers/image/main/change-avatar.controller';
 import editImage from '../controllers/image/main/edit-image.controller';
 import deleteImage from '../controllers/image/main/delete-image.controller';
 import like from '../controllers/image/like/like.controller';

@@ -1,5 +1,6 @@
 import { Document } from 'mongoose';
 import { ImageStatus } from '../../constants';
+import IUser from '../user/types';
 
 export default interface IImage extends Document {
   status?: ImageStatus;
@@ -16,4 +17,5 @@ export default interface IImage extends Document {
   likeIndex?: number;
   createdAt?: string;
   updatedAt?: string;
+  userInfo?: IUser[];
 }

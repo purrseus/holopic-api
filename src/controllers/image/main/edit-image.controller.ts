@@ -7,6 +7,7 @@ const editImage: ControllerType = async (req, res) => {
   const { uid }: UidType = res.locals.user;
   const { imageId } = req.params;
   const { title, tags }: { title: string; tags: string } = req.body;
+
   const tagsArr: string[] = tags.split(' ');
 
   try {

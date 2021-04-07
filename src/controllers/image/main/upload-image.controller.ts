@@ -26,7 +26,7 @@ const uploadImage: ControllerType = async (req, res) => {
       return;
     }
 
-    res.sendStatus(STATUS_CODE.CREATED);
+    res.status(STATUS_CODE.CREATED).json(createdImage);
   } catch (error) {
     res.sendStatus(STATUS_CODE.INTERNAL_SERVER_ERROR);
   }
